@@ -8,6 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
+/**
+ * Regras de negócio relacionadas a livros.
+ */
 @Service
     public class LivroService {
 
@@ -18,6 +21,12 @@ import org.springframework.data.domain.Pageable;
         }
 
 
+        /**
+         * Lista os livros do catálogo de forma paginada.
+         *
+         * @param paginacao página, tamanho e ordenação desejados
+         * @return página de livros convertidos em DTO
+         */
         public Page<LivroResponseDTO> listarPaginado (Pageable paginacao){
             return livroRepository.findAll(paginacao).map(LivroResponseDTO::new);
         }

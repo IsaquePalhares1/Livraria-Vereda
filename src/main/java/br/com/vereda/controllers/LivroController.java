@@ -10,8 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Endpoints REST do catálogo de livros.
+ */
 @RestController
-@RequestMapping("/livros") 
+@RequestMapping("/livros")
 public class LivroController {
 
     private final LivroService livroService;
@@ -20,6 +23,13 @@ public class LivroController {
         this.livroService = livroService;
     }
 
+    /**
+     * {@code GET /livros} — lista os livros paginados.
+     * Padrão: 10 por página, ordenados por título.
+     *
+     * @param paginacao parâmetros {@code page}, {@code size} e {@code sort} da query string
+     * @return 200 OK com a página de livros
+     */
     @GetMapping
     public ResponseEntity<Page<LivroResponseDTO>> listar(
         @PageableDefault(size = 10, sort = "titulo") Pageable paginacao){

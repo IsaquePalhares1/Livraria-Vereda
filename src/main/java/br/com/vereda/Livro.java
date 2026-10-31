@@ -8,6 +8,10 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 
+/**
+ * Entidade que representa um livro do catálogo da livraria.
+ * Mapeada para a tabela {@code livros}.
+ */
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -34,15 +38,20 @@ public class Livro {
     @Column(name = "preco", nullable = false, precision = 10, scale = 2)
     private BigDecimal preco;
 
+    /** Quantidade disponível em estoque; começa em zero. */
     @Column(name = "quantidade_estoque", nullable = false)
     private Integer quantidade_estoque = 0;
 
 
 
+/** Construtor padrão exigido pelo JPA. */
 public Livro(){
 
 }
 
+/**
+ * Cria um novo livro sem id; o id é gerado pelo banco ao persistir.
+ */
 public Livro(String titulo, String autor, String genero, 
              String descricao, LocalDate data_publicacao, BigDecimal preco, 
              Integer quantidade_estoque){
@@ -120,6 +129,9 @@ public void setQuantidade_estoque(Integer quantidade_estoque) {
     this.quantidade_estoque = quantidade_estoque;
 }
 
+/**
+ * Dois livros são iguais quando têm o mesmo id gerado pelo banco.
+ */
 @Override
 public boolean equals(Object o) {
     if (this == o) return true;

@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Embeddable 
+/**
+ * Chave primária composta de {@link Trilha_livro}, formada pelos ids
+ * da trilha e do livro.
+ */
+@Embeddable
 public class TrilhaLivroId implements Serializable {
 
     @Column(name = "trilha_id")
@@ -16,6 +20,7 @@ public class TrilhaLivroId implements Serializable {
     
 
 
+    /** Construtor padrão exigido pelo JPA. */
     public TrilhaLivroId(){
 
     }
@@ -52,6 +57,9 @@ public class TrilhaLivroId implements Serializable {
     }
 
 
+    /**
+     * Chaves compostas precisam de equals/hashCode baseados em todos os campos.
+     */
     @Override
         public boolean equals(Object o) {
             if (this == o) return true;

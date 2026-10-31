@@ -6,6 +6,10 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 
+/**
+ * Entidade que representa uma trilha de leitura: uma sequência ordenada
+ * de livros recomendados. Mapeada para a tabela {@code trilhas}.
+ */
 @Entity
 @Table(name = "trilhas")
 public class Trilha {
@@ -20,15 +24,23 @@ public class Trilha {
      @Column(columnDefinition = "TEXT", nullable = false)
     private String descricao;
 
+    /**
+     * Livros da trilha, ordenados pelo campo {@code ordem}.
+     * Os itens são salvos e removidos junto com a trilha (cascade + orphanRemoval).
+     */
     @OneToMany(mappedBy = "trilha", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("ordem ASC")
     private List<Trilha_livro> itens = new ArrayList<>();
 
 
+/** Construtor padrão exigido pelo JPA. */
 public Trilha(){
 
 }
 
+/**
+ * Cria uma nova trilha sem itens; o id é gerado pelo banco ao persistir.
+ */
 public Trilha(String nome, String descricao){
 
     this.nome = nome;
@@ -67,6 +79,9 @@ public void setDescricao(String descricao) {
 
 
 
+/**
+ * Duas trilhas são iguais quando têm o mesmo id gerado pelo banco.
+ */
 @Override
 public boolean equals(Object o) {
     if (this == o) return true;
