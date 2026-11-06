@@ -11,22 +11,20 @@ import br.com.vereda.Trilha_livro;
  * @param livro         dados do livro
  */
 public record TrilhaItemDTO(
-    Short ordem,
-    String justificativa,
-    LivroResponseDTO livro
-) {
+        Short ordem,
+        String justificativa,
+        LivroResponseDTO livro) {
 
     /**
      * Converte a entidade {@link Trilha_livro} em DTO.
      *
      * @param trilha_livro entidade de origem
      */
-    public TrilhaItemDTO(Trilha_livro trilha_livro){
+    public TrilhaItemDTO(Trilha_livro trilha_livro) {
         this(
-            trilha_livro.getOrdem(),
-            trilha_livro.getJustificativa(),
-            new LivroResponseDTO(trilha_livro.getLivro())
-        );
+                trilha_livro.getOrdem(),
+                trilha_livro.getJustificativa(),
+                new LivroResponseDTO(trilha_livro.getLivro()));
     }
 
 }

@@ -1,6 +1,5 @@
 package br.com.vereda.dto;
 
-
 import br.com.vereda.Livro;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,33 +16,31 @@ import java.time.LocalDate;
  * @param preco              preço de venda
  * @param quantidade_estoque unidades disponíveis em estoque
  */
-public  record LivroResponseDTO(
+public record LivroResponseDTO(
 
-    Long id,
-    String titulo,
-    String autor,
-    String genero,
-    String descricao,
-    LocalDate data_publicacao,
-    BigDecimal preco,
-    Integer quantidade_estoque
-) {
+        Long id,
+        String titulo,
+        String autor,
+        String genero,
+        String descricao,
+        LocalDate data_publicacao,
+        BigDecimal preco,
+        Integer quantidade_estoque) {
 
     /**
      * Converte a entidade {@link Livro} em DTO.
      *
      * @param livro entidade de origem
      */
-    public LivroResponseDTO(Livro livro){
+    public LivroResponseDTO(Livro livro) {
         this(
-            livro.getId(),
-            livro.getTitulo(),
-            livro.getAutor(),
-            livro.getGenero(),
-            livro.getDescricao(),
-            livro.getData_publicacao(),
-            livro.getPreco(),
-            livro.getQuantidade_estoque()
-        );
+                livro.getId(),
+                livro.getTitulo(),
+                livro.getAutor(),
+                livro.getGenero(),
+                livro.getDescricao(),
+                livro.getData_publicacao(),
+                livro.getPreco(),
+                livro.getQuantidade_estoque());
     }
 }
