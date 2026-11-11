@@ -125,6 +125,14 @@ public class Pedido {
         return Objects.hash(id);
     }
 
+    /**
+     * Cria um item ligado a este pedido e o adiciona à lista de itens.
+     * O item é gravado em cascata quando o pedido for salvo.
+     *
+     * @param livro      livro comprado
+     * @param quantidade quantidade do livro
+     * @param preco      preço unitário do livro no momento da compra
+     */
     public void adicionarItem(Livro livro, Short quantidade, BigDecimal preco) {
         Item_pedido item = new Item_pedido(this, livro, quantidade, preco);
         itens.add(item);

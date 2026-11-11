@@ -18,6 +18,9 @@ import br.com.vereda.dto.ItemPedidoRequestDTO;
 import br.com.vereda.dto.PedidoRequestDTO;
 import br.com.vereda.dto.PedidoResponseDTO;
 
+/**
+ * Regras de negócio relacionadas a pedidos.
+ */
 @Service
 public class PedidoService {
 
@@ -36,9 +39,20 @@ public class PedidoService {
         this.pedidoRepository = pedidoRepository;
     }
 
-    // @Transactional garantindo atomicidade
+    /**
+     * Cria um pedido com status {@code PENDENTE} e baixa o estoque dos livros.
+     * O valor total e o preço de cada item vêm do preço cadastrado do livro.
+     * Roda em uma única transação: se qualquer verificação falhar, nada é
+     * gravado e o estoque volta ao que era.
+     *
+     * @param pedidoRequestDTO usuário, endereço de entrega e livros com suas
+     *                         quantidades
+     * @return o pedido criado, com seus itens
+     * @throws ResponseStatusException 404 se o usuário, o endereço ou algum
+     *                                 livro não existir; 400 se o endereço não
+     *                                 for do usuário ou se faltar estoque
+     */
     @Transactional
-    // Criar Pedido
     public PedidoResponseDTO criarPedido(PedidoRequestDTO pedidoRequestDTO) {
 
         // 1- Definir Status do pedido como PENDENTE
