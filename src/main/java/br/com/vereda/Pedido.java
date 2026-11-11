@@ -1,6 +1,8 @@
 package br.com.vereda;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 
@@ -123,6 +125,11 @@ public class Pedido {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void adicionarItem(Livro livro, Short quantidade, BigDecimal preco) {
+        Item_pedido item = new Item_pedido(this, livro, quantidade, preco);
+        itens.add(item);
     }
 
 }
