@@ -127,6 +127,8 @@ public class Pedido {
 
     /**
      * Cria um item ligado a este pedido e o adiciona à lista de itens.
+     * Se o livro já estiver no pedido, soma a quantidade ao item existente
+     * em vez de criar outro (a chave de {@code itens_pedido} é pedido + livro).
      * O item é gravado em cascata quando o pedido for salvo.
      *
      * @param livro      livro comprado
@@ -134,8 +136,17 @@ public class Pedido {
      * @param preco      preço unitário do livro no momento da compra
      */
     public void adicionarItem(Livro livro, Short quantidade, BigDecimal preco) {
+        
+        for(Item_pedido item : itens) {
+            if (item.getLivro().equals(livro)) {
+               item.setQuantidade((short) (item.getQuantidade() + quantidade));
+               return;
+            }
+        } 
+        
         Item_pedido item = new Item_pedido(this, livro, quantidade, preco);
         itens.add(item);
+
     }
 
 }
