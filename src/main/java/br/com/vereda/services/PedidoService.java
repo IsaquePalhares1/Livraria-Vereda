@@ -77,8 +77,8 @@ public class PedidoService {
 
         // Laço percorrendo Lista de itens
         for (ItemPedidoRequestDTO i : pedidoRequestDTO.itens()) {
-            // 6- Encontrar e verificar o livro desejado (id) +Exception
-            Livro livro = livroRepository.findById(i.livroId())
+            // 6- Encontrar e verificar o livro desejado (id) + Exception
+            Livro livro = livroRepository.findWithLockById(i.livroId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
 
             // 7- Ver a quantidade desejada e verificar o suporte do estoque +Exception
