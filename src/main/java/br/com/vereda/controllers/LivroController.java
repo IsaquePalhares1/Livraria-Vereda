@@ -19,7 +19,7 @@ public class LivroController {
 
     private final LivroService livroService;
 
-    public LivroController(LivroService livroService){
+    public LivroController(LivroService livroService) {
         this.livroService = livroService;
     }
 
@@ -27,16 +27,16 @@ public class LivroController {
      * {@code GET /livros} — lista os livros paginados.
      * Padrão: 10 por página, ordenados por título.
      *
-     * @param paginacao parâmetros {@code page}, {@code size} e {@code sort} da query string
+     * @param paginacao parâmetros {@code page}, {@code size} e {@code sort} da
+     *                  query string
      * @return 200 OK com a página de livros
      */
     @GetMapping
     public ResponseEntity<Page<LivroResponseDTO>> listar(
-        @PageableDefault(size = 10, sort = "titulo") Pageable paginacao){
-        
+            @PageableDefault(size = 10, sort = "titulo") Pageable paginacao) {
+
         Page<LivroResponseDTO> pagina = livroService.listarPaginado(paginacao);
         return ResponseEntity.ok(pagina);
     }
-    
 
 }

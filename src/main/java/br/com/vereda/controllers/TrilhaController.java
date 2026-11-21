@@ -19,7 +19,7 @@ public class TrilhaController {
 
     private final TrilhaService trilhaService;
 
-    public TrilhaController(TrilhaService trilhaService){
+    public TrilhaController(TrilhaService trilhaService) {
         this.trilhaService = trilhaService;
     }
 
@@ -27,16 +27,16 @@ public class TrilhaController {
      * {@code GET /trilhas} — lista as trilhas paginadas, com seus livros.
      * Padrão: 10 por página, ordenadas por nome.
      *
-     * @param paginacao parâmetros {@code page}, {@code size} e {@code sort} da query string
+     * @param paginacao parâmetros {@code page}, {@code size} e {@code sort} da
+     *                  query string
      * @return 200 OK com a página de trilhas
      */
     @GetMapping
     public ResponseEntity<Page<TrilhaResponseDTO>> listar(
-        @PageableDefault(size = 10, sort = "nome") Pageable paginacao){
-        
+            @PageableDefault(size = 10, sort = "nome") Pageable paginacao) {
+
         Page<TrilhaResponseDTO> pagina = trilhaService.listarPaginado(paginacao);
         return ResponseEntity.ok(pagina);
     }
-    
 
 }

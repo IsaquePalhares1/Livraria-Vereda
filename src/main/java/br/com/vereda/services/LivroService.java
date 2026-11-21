@@ -7,28 +7,26 @@ import br.com.vereda.repository.LivroRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-
 /**
  * Regras de negócio relacionadas a livros.
  */
 @Service
-    public class LivroService {
+public class LivroService {
 
-        private final LivroRepository livroRepository;
+    private final LivroRepository livroRepository;
 
-        public LivroService(LivroRepository livroRepository){
-            this.livroRepository = livroRepository;
-        }
-
-
-        /**
-         * Lista os livros do catálogo de forma paginada.
-         *
-         * @param paginacao página, tamanho e ordenação desejados
-         * @return página de livros convertidos em DTO
-         */
-        public Page<LivroResponseDTO> listarPaginado (Pageable paginacao){
-            return livroRepository.findAll(paginacao).map(LivroResponseDTO::new);
-        }
-
+    public LivroService(LivroRepository livroRepository) {
+        this.livroRepository = livroRepository;
     }
+
+    /**
+     * Lista os livros do catálogo de forma paginada.
+     *
+     * @param paginacao página, tamanho e ordenação desejados
+     * @return página de livros convertidos em DTO
+     */
+    public Page<LivroResponseDTO> listarPaginado(Pageable paginacao) {
+        return livroRepository.findAll(paginacao).map(LivroResponseDTO::new);
+    }
+
+}

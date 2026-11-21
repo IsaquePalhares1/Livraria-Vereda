@@ -1,10 +1,8 @@
 package br.com.vereda.dto;
 
-
 import br.com.vereda.Trilha;
 
 import java.util.List;
-
 
 /**
  * Dados de uma trilha de leitura retornados pela API.
@@ -14,12 +12,12 @@ import java.util.List;
  * @param descricao descrição da trilha
  * @param itens     livros da trilha, na ordem de leitura
  */
-public  record TrilhaResponseDTO(
+public record TrilhaResponseDTO(
 
-    Long id,
-    String nome,
-    String descricao,
-    List<TrilhaItemDTO> itens
+        Long id,
+        String nome,
+        String descricao,
+        List<TrilhaItemDTO> itens
 
 ) {
 
@@ -28,15 +26,13 @@ public  record TrilhaResponseDTO(
      *
      * @param trilha entidade de origem
      */
-    public TrilhaResponseDTO(Trilha trilha){
+    public TrilhaResponseDTO(Trilha trilha) {
         this(
-            trilha.getId(),
-            trilha.getNome(),
-            trilha.getDescricao(),
-            trilha.getItens().stream()
-                .map(TrilhaItemDTO::new)
-                .toList()
-        );
+                trilha.getId(),
+                trilha.getNome(),
+                trilha.getDescricao(),
+                trilha.getItens().stream()
+                        .map(TrilhaItemDTO::new)
+                        .toList());
     }
 }
- 

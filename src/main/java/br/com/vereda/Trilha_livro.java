@@ -10,12 +10,13 @@ import jakarta.persistence.*;
  * Mapeada para a tabela {@code trilhas_livros}.
  */
 @Entity
-@Table (name = "trilhas_livros")
+@Table(name = "trilhas_livros")
 public class Trilha_livro {
-    
+
     /**
      * Chave composta (trilha_id + livro_id). Os valores são preenchidos
-     * automaticamente a partir de {@code trilha} e {@code livro} via {@code @MapsId}.
+     * automaticamente a partir de {@code trilha} e {@code livro} via
+     * {@code @MapsId}.
      */
     @EmbeddedId
     private TrilhaLivroId id = new TrilhaLivroId();
@@ -35,30 +36,29 @@ public class Trilha_livro {
     private Short ordem;
 
     /** Motivo de o livro fazer parte da trilha. */
-    @Column (columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String justificativa;
 
     /** Construtor padrão exigido pelo JPA. */
-    public Trilha_livro(){
+    public Trilha_livro() {
 
     }
 
     /**
      * Associa um livro a uma trilha na posição indicada.
      */
-    public Trilha_livro(Trilha trilha, Livro livro, Short ordem, String justificativa){
+    public Trilha_livro(Trilha trilha, Livro livro, Short ordem, String justificativa) {
 
         this.trilha = trilha;
         this.livro = livro;
         this.ordem = ordem;
         this.justificativa = justificativa;
-        
+
     }
 
-
     public TrilhaLivroId getId() {
-    return id;
-}
+        return id;
+    }
 
     public Trilha getTrilha() {
         return trilha;
@@ -94,8 +94,10 @@ public class Trilha_livro {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Trilha_livro trilha_livro)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Trilha_livro trilha_livro))
+            return false;
         return Objects.equals(id, trilha_livro.id);
     }
 
@@ -104,10 +106,4 @@ public class Trilha_livro {
         return Objects.hash(id);
     }
 
-
 }
-
-
-
-
-
