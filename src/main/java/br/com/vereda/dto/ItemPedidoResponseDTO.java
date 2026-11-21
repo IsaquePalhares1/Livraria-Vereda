@@ -15,7 +15,7 @@ public record ItemPedidoResponseDTO(
 
     Short quantidade,
     BigDecimal preco_unitario,
-    LivroResponseDTO livro
+    LivroResumoDTO livro
 
 ) {
 
@@ -28,7 +28,7 @@ public record ItemPedidoResponseDTO(
         this(
             item.getQuantidade(),
             item.getPreco_unitario(),
-            new LivroResponseDTO(item.getLivro())
+            new LivroResumoDTO(item.getLivro())
         );
     }
 }
